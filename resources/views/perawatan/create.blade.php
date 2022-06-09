@@ -37,7 +37,7 @@
                     <div class="form-group mb-0">
                         <label for="exampleInputPerawatan">Perawatan</label>
                         <textarea class="form-control @error('perawatan') is-invalid @enderror" 
-                        id="exampleInputCiriCiri" placeholder="Perawatan" name="perawatan"
+                        id="exampleInputPerawatan" placeholder="Perawatan" name="perawatan"
                         value="{{old('perawatan')}}"></textarea>
                         @error('perawatan') <span class="text-danger">{{$message}}</span> @enderror
                     </div>

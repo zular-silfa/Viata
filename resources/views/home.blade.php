@@ -10,16 +10,7 @@
     <div class="row">
         <div class="col-md-3 col-sm-6 col-xs-12">
             <div class="info-box">
-                <span class="info-box-icon">
-                    <i class="fas fa-fw fa-user"></i>
-                </span>
-                <div class="info-box-content">
-                    <span class="info-box-text">Users</span>
-                    <span class="info-box-number"></span>
-                </div>
-            </div>
-            <div class="info-box">
-                <span class="info-box-icon">
+                <span class="info-box-icon bg-blue">
                     <i class="fas fa-fw fa-edit"></i>
                 </span>
                 <div class="info-box-content">
@@ -28,4 +19,5 @@
                 </div>
             </div>
         </div>
+    </div>
 @stop

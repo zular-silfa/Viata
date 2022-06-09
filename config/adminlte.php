@@ -236,11 +236,6 @@ return [
             'icon' => 'far fa-fw fa-clock',
         ],
         [
-            'text'         => 'Users',
-            'url'         => '/viata_users',
-            'icon' => 'far fa-fw fa-user',
-        ],
-        [
             'text'         => 'Perawatan',
             'url'         => '/perawatan',
             'icon' => 'far fa-fw fa-edit',

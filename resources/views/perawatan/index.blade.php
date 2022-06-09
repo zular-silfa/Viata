@@ -28,7 +28,7 @@
                                 <td>{{$key+1}}</td>
                                 <td>{{$perawatan->jenis_kucing}}</td>
                                 <td>
-                                    <img src="{{ asset('fotokucing/'.$row->foto) }}" alt="" style="width: 50px;">
+                                    <img src="{{ asset('fotokucing/'.$perawatan->foto)}}" alt="" style="width: 100px;">
                                 </td>
                                 <td>{{$perawatan->ciri_ciri}}</td>
                                 <td>{{$perawatan->perawatan}}</td>

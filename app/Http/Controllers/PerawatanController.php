@@ -38,22 +38,13 @@ class PerawatanController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'jenis_kucing' => 'required',
-            'foto' => 'required',
-            'ciri-ciri' => 'required',
-            'perawatan' => 'required'
-        ]);
-        $array = $request->only([
-            'jenis_kucing', 'foto', 'ciri-ciri', 'perawatan'
-        ]);
-        $perawatan = Perawatan::create($array);
+        $perawatan = Perawatan::create($request->all());
         if($request->hasFile('foto')){
             $request->file('foto')->move('fotokucing/', $request->file('foto')->getClientOriginalName());
+            $perawatan->foto = $request->file('foto')->getClientOriginalName();
+            $perawatan->save();
         }
-        return redirect()->route('perawatan.index')
-            ->with('success_message', 'Data perawatan baru berhasil disimpan');
-
+        return redirect()->route('perawatan.index')->with('success_message',' Data berhasil ditambahkan');
     }
 
     /**
@@ -76,7 +67,7 @@ class PerawatanController extends Controller
     public function edit($id)
     {
         $perawatan = Perawatan::find($id);
-        if ($perawatan) return redirect()->route('perawatan.index')
+        if (!$perawatan) return redirect()->route('perawatan.index')
             ->with('error_message', 'Perawatan dengan id'.$id.'tidak ditemukan');
         return view('perawatan.edit', [
             'perawatan' => $perawatan
@@ -92,21 +83,10 @@ class PerawatanController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'jenis_kucing' => 'required',
-            'foto' => 'required',
-            'ciri-ciri' => 'required',
-            'perawatan' => 'required'
-        ]);
         $perawatan = Perawatan::find($id);
-        $perawatan->jenis_kucing = $request->jenis_kucing;
-        $perawatan->foto = $request->foto;
-        $perawatan->ciri_ciri = $request->ciri_ciri;
-        $perawatan->perawatan = $request->perawatan;
-        $perawatan->save();
+        $perawatan->update($request->all());
         return redirect()->route('perawatan.index')
             ->with('success_message', 'Berhasil mengubah Perawatan Kucing');
-
     }
 
     /**
@@ -117,7 +97,8 @@ class PerawatanController extends Controller
      */
     public function destroy($id)
     {
-        DB::table('perawatan')->where('id',$id)->delete();
+        $perawatan = Perawatan::find($id);
+        $perawatan->delete();
         return redirect()->route('perawatan.index')
         ->with('success_message', 'Data perawatan berhasil dihapus');
     }

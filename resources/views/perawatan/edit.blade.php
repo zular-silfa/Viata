@@ -7,7 +7,7 @@
 @stop
 
 @section('content')
-    <form action="{{route('perawatan.update', $perawatan)}}" method="post">
+    <form action="{{route('perawatan.update', $perawatan)}}" method="post" enctype="multipart/form-data">
         @method('PUT')
         @csrf
         <div class="row">
@@ -23,6 +23,11 @@
                     </div>
                     <div class="form-group">
                         <label for="exampleInputFoto">Foto</label>
+                        @if($perawatan->foto)
+                         <img src="{{ asset('fotokucing/'.$perawatan->foto)}}" alt=""
+                         class="img-preview img-fluid mb-3 col-sm-5 d-block" style="width: 100px;">
+                        @else
+                        @endif
                         <input type="file" class="form-control @error('foto') is-invalid @enderror" 
                         id="exampleInputFoto" placeholder="Foto" name="Foto"
                         value="{{$perawatan->foto ?? old('foto')}}">
@@ -31,15 +36,13 @@
                     <div class="form-group mb-0">
                         <label for="exampleInputCiriCiri">Ciri-Ciri</label>
                         <textarea class="form-control @error('ciri_ciri') is-invalid @enderror" 
-                        id="exampleInputCiriCiri" placeholder="Ciri-Ciri" name="ciri_ciri"
-                        value="{{$perawatan->ciri_ciri ?? old('ciri_ciri')}}"></textarea>
+                        id="exampleInputCiriCiri" placeholder="Ciri-Ciri" name="ciri_ciri">{{$perawatan->ciri_ciri ?? old('ciri_ciri')}}</textarea>
                         @error('ciri_ciri') <span class="text-danger">{{$message}}</span> @enderror
                     </div>
                     <div class="form-group mb-0">
                         <label for="exampleInputPerawatan">Perawatan</label>
                         <textarea class="form-control @error('perawatan') is-invalid @enderror" 
-                        id="exampleInputPerawatan" placeholder="Perawatan" name="perawatan"
-                        value="{{$perawatan->perawatan ?? old('perawatan')}}"></textarea>
+                        id="exampleInputPerawatan" placeholder="Perawatan" name="perawatan">{{$perawatan->perawatan ?? old('perawatan')}}</textarea>
                         @error('perawatan') <span class="text-danger">{{$message}}</span> @enderror
                     </div>
                 </div>
