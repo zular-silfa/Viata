@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Perawatan;
+use App\Models\Penyakit;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
-class PerawatanController extends Controller
+class PenyakitController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +15,9 @@ class PerawatanController extends Controller
      */
     public function index()
     {
-        $perawatan = Perawatan::all();
-        return view('perawatan.index', [
-            'perawatan' => $perawatan
+        $penyakit = Penyakit::all();
+        return view('penyakit.index', [
+            'penyakit' => $penyakit
         ]);
     }
 
@@ -28,7 +28,7 @@ class PerawatanController extends Controller
      */
     public function create()
     {
-        return view('perawatan.create');
+        return view('penyakit.create');
     }
 
     /**
@@ -40,13 +40,16 @@ class PerawatanController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
-        if ($request->hasFile('foto')) {
-            $path = $request->file('foto')->store('fotokucing');
+
+        if ($request->has('foto')) {
+            $path = $request->file('foto')->store('fotopenyakit');
             $data['foto'] = $path;
         }
 
-        $perawatan = Perawatan::create($data);
-        return redirect()->route('perawatan.index')->with('success_message', ' Data berhasil ditambahkan');
+        $penyakit = Penyakit::create($data);
+        $penyakit->save();
+
+        return redirect()->route('penyakit.index')->with('success_message', ' Data berhasil ditambahkan');
     }
 
     /**
@@ -68,11 +71,11 @@ class PerawatanController extends Controller
      */
     public function edit($id)
     {
-        $perawatan = Perawatan::find($id);
-        if (!$perawatan) return redirect()->route('perawatan.index')
-            ->with('error_message', 'Perawatan dengan id' . $id . 'tidak ditemukan');
-        return view('perawatan.edit', [
-            'perawatan' => $perawatan
+        $penyakit = Penyakit::find($id);
+        if (!$penyakit) return redirect()->route('penyakit.index')
+            ->with('error_message', 'Penyakit dengan id' . $id . 'tidak ditemukan');
+        return view('penyakit.edit', [
+            'penyakit' => $penyakit
         ]);
     }
 
@@ -86,14 +89,13 @@ class PerawatanController extends Controller
     public function update(Request $request, $id)
     {
         $data = $request->all();
-        $perawatan = Perawatan::find($id);
-
+        $penyakit = Penyakit::find($id);
         if ($request->has('foto')) {
-            $data['foto'] = $request->file('foto')->store('fotokucing');
+            $data['foto'] = $request->file('foto')->store('fotopenyakit');
         }
-        $perawatan->update($data);
-        return redirect()->route('perawatan.index')
-            ->with('success_message', 'Berhasil mengubah Perawatan Kucing');
+        $penyakit->update($data);
+        return redirect()->route('penyakit.index')
+            ->with('success_message', 'Berhasil mengubah Penyakit Kucing');
     }
 
     /**
@@ -104,9 +106,9 @@ class PerawatanController extends Controller
      */
     public function destroy($id)
     {
-        $perawatan = Perawatan::find($id);
-        $perawatan->delete();
-        return redirect()->route('perawatan.index')
-            ->with('success_message', 'Data perawatan berhasil dihapus');
+        $penyakit = Penyakit::find($id);
+        $penyakit->delete();
+        return redirect()->route('penyakit.index')
+            ->with('success_message', 'Data penyakit berhasil dihapus');
     }
 }

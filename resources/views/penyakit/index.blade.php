@@ -1,7 +1,7 @@
 @extends('adminlte::page')
-@section('title', 'List Perawatan Kucing')
+@section('title', 'List Penyakit Kucing')
 @section('content_header')
-    <h1 class="m-0 text-dark">List Perawatan Kucing</h1>
+    <h1 class="m-0 text-dark">List Penyakit Kucing</h1>
 @stop
 
 @section('content')
@@ -9,34 +9,32 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                   <a href="{{route('perawatan.create')}}" class="btn btn-primary mb-2">
+                   <a href="{{route('penyakit.create')}}" class="btn btn-primary mb-2">
                        Add
                    </a>
                    <table class="table table-hover table-bordered table stripped" id="example2">
                        <thead>
                            <tr>
                                <th>No.</th>
-                               <th>Jenis Kucing</th>
+                               <th>Nama</th>
+                               <th>Detail</th>
                                <th>Foto</th>
-                               <th>Ciri-Ciri</th>
-                               <th>Perawatan</th>
                            </tr>
                        </thead>
                        <tbody>
-                        @foreach($perawatan as $key => $perawatan)
+                        @foreach($penyakit as $key => $penyakit)
                             <tr>
                                 <td>{{$key+1}}</td>
-                                <td>{{$perawatan->jenis_kucing}}</td>
+                                <td>{{$penyakit->nama}}</td>
+                                <td>{{$penyakit->detail}}</td>
                                 <td>
-                                    <img src="{{ asset($perawatan->foto)}}" alt="" style="width: 100px;">
+                                    <img src="{{ asset($penyakit->foto)}}" alt="" style="width: 100px;">
                                 </td>
-                                <td>{{$perawatan->ciri_ciri}}</td>
-                                <td>{{$perawatan->perawatan}}</td>
                                 <td>
-                                    <a href="{{route('perawatan.edit', $perawatan)}}" class="btn btn-primary btn-xs">
+                                    <a href="{{route('penyakit.edit', $penyakit)}}" class="btn btn-primary btn-xs">
                                         Edit
                                     </a>
-                                    <a href="{{route('perawatan.destroy', $perawatan)}}"
+                                    <a href="{{route('penyakit.destroy', $penyakit)}}"
                                         onclick="notificationBeforeDelete(event, this)" class="btn btn-danger btn-xs">
                                         Delete
                                     </a>

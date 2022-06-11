@@ -236,6 +236,11 @@ return [
             'icon' => 'far fa-fw fa-clock',
         ],
         [
+            'text'         => 'Penyakit',
+            'url'         => '/penyakit',
+            'icon' => 'far fa-fw fa-file',
+        ],
+        [
             'text'         => 'Perawatan',
             'url'         => '/perawatan',
             'icon' => 'far fa-fw fa-edit',

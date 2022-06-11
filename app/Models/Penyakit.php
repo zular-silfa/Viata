@@ -6,12 +6,12 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
 
-class Perawatan extends Model
+class Penyakit extends Model
 {
-    protected $table = 'perawatan';
+    protected $table = 'penyakit';
     protected $primaryKey = 'id';
     protected $fillable = [
-        'jenis_kucing', 'foto', 'ciri_ciri', 'perawatan',
+        'nama', 'detail', 'foto',
     ];
 
     public static function boot()

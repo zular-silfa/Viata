@@ -27,13 +27,10 @@ Route::get('/home', function () {
 Route::resource('viata_users', \App\Http\Controllers\ViataUsersController::class)
     ->middleware('auth');
 
+
 Route::resource('perawatan', \App\Http\Controllers\PerawatanController::class)
     ->middleware('auth');
-
-Route::get('/create', [App\Http\Controllers\PerawatanController::class, 'create'])->name('create');
-Route::post('/store', [App\Http\Controllers\PerawatanController::class, 'store'])->name('store');
-Route::get('/edit/{id}', [App\Http\Controllers\PerawatanController::class, 'edit'])->name('edit');
-Route::post('/update/{id}', [App\Http\Controllers\PerawatanController::class, 'update'])->name('update');
-Route::get('/destroy/{id}', [App\Http\Controllers\PerawatanController::class, 'destroy'])->name('destroy');
-
-Route::resource('makanan', MakananController::class)->except('show');
+Route::resource('makanan', MakananController::class)->except('show')
+    ->middleware('auth');
+Route::resource('penyakit', \App\Http\Controllers\PenyakitController::class)
+    ->middleware('auth');
