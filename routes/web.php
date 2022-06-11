@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\MakananController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,15 +20,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-Auth::routes();
-
-Route::get('/home', function() {
+Route::get('/home', function () {
     return view('home');
 })->name('home')->middleware('auth');
 
@@ -42,3 +35,5 @@ Route::post('/store', [App\Http\Controllers\PerawatanController::class, 'store']
 Route::get('/edit/{id}', [App\Http\Controllers\PerawatanController::class, 'edit'])->name('edit');
 Route::post('/update/{id}', [App\Http\Controllers\PerawatanController::class, 'update'])->name('update');
 Route::get('/destroy/{id}', [App\Http\Controllers\PerawatanController::class, 'destroy'])->name('destroy');
+
+Route::resource('makanan', MakananController::class)->except('show');

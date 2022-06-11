@@ -240,13 +240,18 @@ return [
             'url'         => '/perawatan',
             'icon' => 'far fa-fw fa-edit',
         ],
-        
-       
+        [
+            'text'         => 'Makanan',
+            'url'         => '/makanan',
+            'icon' => 'far fa-fw fa-edit',
+        ],
+
+
 
         // Sidebar items:
-        
-        
-        
+
+
+
     ],
 
     /*
