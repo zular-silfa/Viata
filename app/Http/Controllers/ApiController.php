@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\PenyakitCollection;
+use App\Http\Resources\PerawatanCollection;
 use App\Models\Makanan;
 use App\Models\Penyakit;
 use App\Models\Perawatan;
@@ -12,7 +14,7 @@ class ApiController extends Controller
     public function getTreatmentList()
     {
         $treatments =  Perawatan::latest()->get();
-        return $treatments;
+        return new PerawatanCollection($treatments);
     }
 
     public function getFoodList()
@@ -24,6 +26,6 @@ class ApiController extends Controller
     public function getDiseaseList()
     {
         $diseases = Penyakit::latest()->get();
-        return $diseases;
+        return new PenyakitCollection($diseases);
     }
 }
