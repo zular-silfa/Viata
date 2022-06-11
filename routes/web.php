@@ -36,9 +36,16 @@ Route::resource('viata_users', \App\Http\Controllers\ViataUsersController::class
 
 Route::resource('perawatan', \App\Http\Controllers\PerawatanController::class)
     ->middleware('auth');
-
 Route::get('/create', [App\Http\Controllers\PerawatanController::class, 'create'])->name('create');
 Route::post('/store', [App\Http\Controllers\PerawatanController::class, 'store'])->name('store');
 Route::get('/edit/{id}', [App\Http\Controllers\PerawatanController::class, 'edit'])->name('edit');
 Route::post('/update/{id}', [App\Http\Controllers\PerawatanController::class, 'update'])->name('update');
 Route::get('/destroy/{id}', [App\Http\Controllers\PerawatanController::class, 'destroy'])->name('destroy');
+
+Route::resource('penyakit', \App\Http\Controllers\PenyakitController::class)
+    ->middleware('auth');
+Route::get('/create', [App\Http\Controllers\PenyakitController::class, 'create'])->name('create');
+Route::post('/store', [App\Http\Controllers\PenyakitController::class, 'store'])->name('store');
+Route::get('/edit/{id}', [App\Http\Controllers\PenyakitController::class, 'edit'])->name('edit');
+Route::post('/update/{id}', [App\Http\Controllers\PenyakitController::class, 'update'])->name('update');
+Route::get('/destroy/{id}', [App\Http\Controllers\PenyakitController::class, 'destroy'])->name('destroy');
