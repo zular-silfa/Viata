@@ -18,11 +18,11 @@ class Perawatan extends Model
     {
         parent::boot();
 
-        static::deleted(function (Penyakit $item) {
+        static::deleted(function (Perawatan $item) {
             Storage::delete($item->foto);
         });
 
-        static::updated(function (Penyakit $item) {
+        static::updated(function (Perawatan $item) {
             if ($item->foto != $item->getOriginal('foto')) {
                 Storage::delete($item->getOriginal('foto'));
             }
