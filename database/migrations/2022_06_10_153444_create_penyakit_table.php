@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('penyakit', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('nama');
-            $table->string('detail');
+            $table->text('detail');
             $table->string('foto');
             $table->timestamps();
         });
