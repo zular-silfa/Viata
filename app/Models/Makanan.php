@@ -10,4 +10,5 @@ class Makanan extends Model
     use HasFactory;
     protected $table = 'makanan';
     protected $guarded = ['id'];
+    protected $casts = ['harga' => 'int'];
 }
