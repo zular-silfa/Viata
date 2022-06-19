@@ -12,7 +12,7 @@
         <!-- Styles -->
         <style> 
         body {
-          background-image: url("img/kucing.png");
+          background-image: url("img/viatapage.png");
         }
         </style>
     </head>
